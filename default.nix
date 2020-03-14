@@ -8,7 +8,7 @@
 
 { pkgs ? import <nixpkgs> {} }:
 
-{
+rec {
   # The `lib`, `modules`, and `overlay` names are special
   lib = import ./lib { inherit pkgs; }; # functions
   modules = import ./modules; # NixOS modules
@@ -16,4 +16,6 @@
 
   cc65 = pkgs.callPackage ./pkgs/cc65 { };
   disk-utilities = pkgs.callPackage ./pkgs/disk-utilities { };
+  opencbm = pkgs.callPackage ./pkgs/opencbm { inherit cc65; };
+  nibtools = pkgs.callPackage ./pkgs/nibtools { inherit cc65 opencbm; };
 }
