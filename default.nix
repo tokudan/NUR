@@ -15,5 +15,5 @@
   overlays = import ./overlays; # nixpkgs overlays
 
   cc65 = pkgs.callPackage ./pkgs/cc65 { };
+  disk-utilities = pkgs.callPackage ./pkgs/disk-utilities { };
 }
-
