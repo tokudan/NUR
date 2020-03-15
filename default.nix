@@ -19,4 +19,6 @@ rec {
   disk-utilities = pkgs.callPackage ./pkgs/disk-utilities { };
   opencbm = pkgs.callPackage ./pkgs/opencbm { inherit cc65; };
   nibtools = pkgs.callPackage ./pkgs/nibtools { inherit cc65 opencbm; };
+
+  writefreely = pkgs.callPackage ./pkgs/writefreely { };
 }
