@@ -17,6 +17,7 @@ buildGoModule rec {
   preBuild = ''
     go-bindata -pkg writefreely -ignore=\\.gitignore -tags="!wflib" schema.sql sqlite.sql
     '';
+  buildFlagsArray = [ "-tags='sqlite'" ];
 
   meta = with lib; {
     description = "A simple, federated blogging platform";
