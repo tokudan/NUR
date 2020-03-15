@@ -27,9 +27,7 @@ buildGoModule rec {
   postInstall = ''
     mkdir -p $out/lib
     cd $out/lib
-    tar xavf ${assets} writefreely/{pages,static,templates}
-    mv writefreely/* .
-    rmdir writefreely
+    tar xavf ${assets} --strip-components=1 writefreely/{pages,static,templates}
     '';
 
   meta = with lib; {
