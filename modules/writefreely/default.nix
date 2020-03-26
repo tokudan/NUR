@@ -120,7 +120,7 @@ in
     users.extraGroups."${cfg.group}" = {  };
 
     systemd.services.writefreely =
-      let cfgFile = if ! isNull cfg.configFile then cfg.configFile else ( pkgs.writeText "writefreely.ini" ( lib.generators.toINI {} (defaultConfig // cfg.config) ));
+      let cfgFile = if ! isNull cfg.configFile then cfg.configFile else ( pkgs.writeText "writefreely.ini" ( lib.generators.toINI {} (recursiveUpdate defaultConfig cfg.config) ));
       in
       {
         description = "writefreely server";
