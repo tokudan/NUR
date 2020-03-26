@@ -128,6 +128,7 @@ in
         wantedBy = [ "multi-user.target" ];
         after = [ "network.target" ];
 
+        path = [ pkgs.openssl ];
         serviceConfig = {
           ExecStartPre = (
             pkgs.writeScript "writefreely-init" ''
