@@ -5,7 +5,6 @@
 
 stdenv.mkDerivation rec {
   name = "nibtools-${version}";
-  # latest svn is 657, but it doesn't build, trying 637 instead
   version = "657";
 
   src = fetchsvn {
