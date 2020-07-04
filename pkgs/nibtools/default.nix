@@ -5,7 +5,7 @@
 
 stdenv.mkDerivation rec {
   name = "nibtools-${version}";
-  version = "663";
+  version = "664";
 
   # The Subversion repo seems to have a lot of temporary failures, so I made a git clone.
   # Original repo for reference, if you prefer it.
@@ -21,39 +21,11 @@ stdenv.mkDerivation rec {
   src = fetchgit {
     url = "https://codeberg.org/tokudan/nibtools.git";
     rev = "refs/tags/r${version}";
-    sha256 = "0gxxg9j8kpd6kzf0vf0yjxh1799n02q2imds3wm0916vg2g1xm70";
+    sha256 = "0wlivlcxrjpwimb9a6dgc765if5w54kj7diqm833frqxl3qq4rlz";
   };
 
   patches = [
-    (writeText "nibtools-opencbm.patch" ''
-diff -Naur /nix/store/1mlxihj4fs5ky1rkjdq86xbaz06kw44h-nibtools-r657/LINUX/Makefile tmp.LCYSARtSWF/LINUX/Makefile
---- /nix/store/1mlxihj4fs5ky1rkjdq86xbaz06kw44h-nibtools-r657/LINUX/Makefile	1970-01-01 01:00:01.000000000 +0100
-+++ tmp.LCYSARtSWF/LINUX/Makefile	2020-02-29 20:20:03.990206474 +0100
-@@ -1,7 +1,6 @@
- # $Id: Makefile,v 1.1.1.1 2007/01/21 17:15:35 peter Exp $
- 
--RELATIVEPATH=../
--include ''${RELATIVEPATH}LINUX/config.make
-+include ${opencbm.src}/opencbm/LINUX/config.make
- 
- .PHONY: all mrproper clean install uninstall install-files
- 
-@@ -9,12 +8,12 @@
- PROG = nibread nibwrite nibscan nibconv nibrepair nibsrqtest
- 
- all:
--	make -f GNU/Makefile CBM_LNX_PATH="../" linux
-+	make -f GNU/Makefile linux
- 
- mrproper: clean
- 
- clean:
--	make -f GNU/Makefile CBM_LNX_PATH="../" distclean
-+	make -f GNU/Makefile distclean
- 
- install-files: $(PROG)
- 	install -m 755 -s $(PROG) $(BINDIR)
-      '')
+    ./00-fix-opencbm-path.patch
     ];
   buildInputs = [ pkg-config cc65 opencbm ];
   makefile = "LINUX/Makefile";
