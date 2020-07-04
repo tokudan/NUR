@@ -5,7 +5,7 @@
 
 stdenv.mkDerivation rec {
   name = "nibtools-${version}";
-  version = "664";
+  version = "666";
 
   # The Subversion repo seems to have a lot of temporary failures, so I made a git clone.
   # Original repo for reference, if you prefer it.
@@ -21,7 +21,7 @@ stdenv.mkDerivation rec {
   src = fetchgit {
     url = "https://codeberg.org/tokudan/nibtools.git";
     rev = "refs/tags/r${version}";
-    sha256 = "0wlivlcxrjpwimb9a6dgc765if5w54kj7diqm833frqxl3qq4rlz";
+    sha256 = "16xh0n7q34h1dgbx9bss05w5lh6lrla31fza7g20fsiyih3bz077";
   };
 
   patches = [
