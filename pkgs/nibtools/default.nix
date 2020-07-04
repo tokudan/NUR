@@ -18,9 +18,10 @@ stdenv.mkDerivation rec {
   #  sha256 = "18hs5v05hcsizmpr4r2sm0fv7115kqcxsfr998dw46iawg7f26z6";
   #};
 
-  src = fetchgit {
-    url = "https://codeberg.org/tokudan/nibtools.git";
-    rev = "refs/tags/r${version}";
+  src = fetchFromGitHub {
+    owner = "OpenCBM";
+    repo = "nibtools";
+    rev = "77ec1e1716b579d23130d78586ef5297f17cd6b7";
     sha256 = "16xh0n7q34h1dgbx9bss05w5lh6lrla31fza7g20fsiyih3bz077";
   };
 
