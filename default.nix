@@ -25,5 +25,6 @@ rec {
   xa = pkgs.callPackage ./pkgs/xa { };
 
   # Web apps
+  freshrss = pkgs.callPackage ./pkgs/freshrss {  };
   writefreely = pkgs.callPackage ./pkgs/writefreely { };
 }
