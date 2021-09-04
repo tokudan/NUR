@@ -3,9 +3,6 @@
 with lib;
 
 let
-  writefreely = (pkgs.callPackage ../../pkgs/writefreely {});
-in
-let
 
   cfg = config.services.writefreely;
   defaultConfig = {
@@ -13,9 +10,9 @@ let
       port = 8080;
       bind = "localhost";
       autocert = false;
-      templates_parent_dir = "${writefreely}/lib";
-      static_parent_dir = "${writefreely}/lib";
-      pages_parent_dir = "${writefreely}/lib";
+      templates_parent_dir = "${pkgs.writefreely}/lib";
+      static_parent_dir = "${pkgs.writefreely}/lib";
+      pages_parent_dir = "${pkgs.writefreely}/lib";
     };
     database = {
       type = "sqlite3";
@@ -134,13 +131,13 @@ in
             pkgs.writeScript "writefreely-init" ''
               #!${pkgs.stdenv.shell} -e
               echo Init DB:
-              ${writefreely}/bin/writefreely -c ${cfgFile} --init-db
+              ${pkgs.writefreely}/bin/writefreely -c ${cfgFile} --init-db
               echo Generate Keys:
-              [ ! -d keys ] && ${writefreely}/bin/writefreely -c ${cfgFile} --gen-keys
+              [ ! -d keys ] && ${pkgs.writefreely}/bin/writefreely -c ${cfgFile} --gen-keys
               echo Create default user:
-              ${if isNull cfg.defaultUserPass then "" else "${writefreely}/bin/writefreely -c ${cfgFile} --create-admin ${cfg.defaultUserPass} || :"}
+              ${if isNull cfg.defaultUserPass then "" else "${pkgs.writefreely}/bin/writefreely -c ${cfgFile} --create-admin ${cfg.defaultUserPass} || :"}
             '' );
-          ExecStart = "${writefreely}/bin/writefreely -c ${cfgFile}";
+          ExecStart = "${pkgs.writefreely}/bin/writefreely -c ${cfgFile}";
           WorkingDirectory = "/var/lib/writefreely";
           StateDirectory = "writefreely";
           User = cfg.user;
