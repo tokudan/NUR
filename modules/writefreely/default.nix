@@ -140,6 +140,7 @@ in
           ExecStart = "${pkgs.writefreely}/bin/writefreely -c ${cfgFile}";
           WorkingDirectory = "/var/lib/writefreely";
           StateDirectory = "writefreely";
+          StateDirectoryMode = "0700";
           User = cfg.user;
         };
 
