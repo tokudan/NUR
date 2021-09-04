@@ -133,7 +133,7 @@ in
               echo Init DB:
               ${pkgs.writefreely}/bin/writefreely -c ${cfgFile} --init-db
               echo Generate Keys:
-              [ ! -d keys ] && ${pkgs.writefreely}/bin/writefreely -c ${cfgFile} --gen-keys
+              ${pkgs.writefreely}/bin/writefreely -c ${cfgFile} keys generate
               echo Create default user:
               ${if isNull cfg.defaultUserPass then "" else "${pkgs.writefreely}/bin/writefreely -c ${cfgFile} --create-admin ${cfg.defaultUserPass} || :"}
             '' );
