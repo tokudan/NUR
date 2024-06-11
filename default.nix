@@ -24,7 +24,4 @@ rec {
   vice = pkgs.callPackage ./pkgs/vice { inherit xa; };
   xa = pkgs.callPackage ./pkgs/xa { };
 
-  # Web apps
-  freshrss = pkgs.callPackage ./pkgs/freshrss {  };
-  writefreely = pkgs.callPackage ./pkgs/writefreely { };
 }
