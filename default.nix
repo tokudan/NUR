@@ -23,5 +23,4 @@ rec {
   superdiskindex = pkgs.callPackage ./pkgs/superdiskindex { };
   vice = pkgs.callPackage ./pkgs/vice { inherit xa; };
   xa = pkgs.callPackage ./pkgs/xa { };
-
 }
